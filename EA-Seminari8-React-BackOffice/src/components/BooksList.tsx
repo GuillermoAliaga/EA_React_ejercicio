@@ -13,6 +13,7 @@ import { formatPrice, languageName, truncate } from '../utils/format';
 import { ConfirmModal } from './ConfirmModal';
 import { Pagination } from './Pagination';
 import { ViewToggle } from './ViewToggle';
+import { FavouriteButton } from './FavouriteButton';
 
 // Libros que se ven en cada página de la tabla
 const PAGE_SIZE = 4;
@@ -108,6 +109,7 @@ export function BooksList() {
                   <th>Año</th>
                   <th>Precio</th>
                   <th>Tags</th>
+                  <th>Favorito</th>
                   <th></th>
                 </tr>
               </thead>
@@ -120,6 +122,9 @@ export function BooksList() {
                         src={`https://picsum.photos/seed/${book._id}/60/80`}
                         alt={`Portada de ${book.title}`}
                       />
+                      <td>
+                        <FavouriteButton book={book} />
+                      </td>
                     </td>
                     <td>{book.title}</td>
                     <td title={book.description ?? ''}>
@@ -186,6 +191,7 @@ export function BooksList() {
                         </span>
                       ))}
                     </div>
+                    <FavouriteButton book={book} />
                   </div>
                   <div className="card-actions">
                     <Link className="button secondary" to={`/books/${book._id}/edit`}>
